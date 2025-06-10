@@ -13,6 +13,8 @@ import (
 )
 
 func main() {
+	helpFlag := flag.Bool("help", false, "show this usage message")
+
 	//
 	// Parse arguments from the command line
 	//
@@ -25,6 +27,11 @@ func main() {
 		flag.Usage()
 		fmt.Fprintln(os.Stderr, "mwcat: [options] <topic> <filename>")
 		fmt.Fprintln(os.Stderr, "\truns a console consumer on the given topic using the provided connection profile")
+
+		if *helpFlag {
+			os.Exit(0)
+		}
+
 		os.Exit(64) // EX_USAGE
 	}
 
