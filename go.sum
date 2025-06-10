@@ -26,8 +26,8 @@ github.com/klauspost/compress v1.17.11 h1:In6xLpyWOi1+C7tXUUWv2ot1QvBjxevKAaI6IX
 github.com/klauspost/compress v1.17.11/go.mod h1:pMDklpSncoRMuLFrf1W9Ss9KT+0rH90U12bZKk7uwG0=
 github.com/leodido/go-urn v1.4.0 h1:WT9HwE9SGECu3lg4d/dIA+jxlljEa1/ffXKmRjqdmIQ=
 github.com/leodido/go-urn v1.4.0/go.mod h1:bvxc+MVxLKB4z00jd1z+Dvzr47oO32F/QSNjSBOlFxI=
-github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250609213342-98e55134b7a7 h1:OU4yok5U3qFpRJVniYW6MUKOjXGhrnTM4urr4sc4RMs=
-github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250609213342-98e55134b7a7/go.mod h1:a3dB9N4o0QlSb5iuwgHmNaxygOmQj5Dv4SXwxa0JfVw=
+github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250610213307-28972e0fd160 h1:MHvrtDPJAlXcW+RMSjr1jla57xUUZUJyTzhEdBQ1p2A=
+github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250610213307-28972e0fd160/go.mod h1:a3dB9N4o0QlSb5iuwgHmNaxygOmQj5Dv4SXwxa0JfVw=
 github.com/mitchellh/mapstructure v1.5.0 h1:jeMsZIYE/09sWLaz43PL7Gy6RuMjD2eJVyuac5Z2hdY=
 github.com/mitchellh/mapstructure v1.5.0/go.mod h1:bFUtVrKA4DC2yAKiSyO/QUcy7e+RRV2QTWOzhPopBRo=
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
