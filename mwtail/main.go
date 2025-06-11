@@ -5,12 +5,14 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"os"
 
+	"github.com/alecthomas/chroma/v2/quick"
+	"github.com/alecthomas/chroma/v2/styles"
 	"github.com/davecgh/go-spew/spew"
 	"github.com/mister-webhooks/mister-webhooks-client/golang/client"
-	"github.com/paudley/colorout"
 )
 
 func main() {
@@ -21,11 +23,73 @@ func main() {
 
 	color := !(noColorEnv || *noColorFlag)
 
+	testModeFlag := flag.Bool("test", false, "run in output test mode")
+	listStylesFlag := flag.Bool("list-styles", false, "show all supported colorization styles")
+	styleFlag := flag.String("style", "friendly", "the colorization style to use")
+
 	//
-	// Parse arguments from the command line
+	// Parse and validate arguments from the command line
 	//
 	flag.Parse()
 
+	if *listStylesFlag {
+		fmt.Println("supported styles:")
+		for _, name := range styles.Names() {
+			fmt.Printf("  %s\n", name)
+		}
+		os.Exit(0)
+	}
+
+	if _, supported := styles.Registry[*styleFlag]; !supported {
+		fmt.Printf("error: %s is not a supported style\n", *styleFlag)
+		os.Exit(1)
+	}
+
+	//
+	// Configure prettyprinter
+	//
+	spew.Config.Indent = "  "
+	spew.Config.SortKeys = true
+
+	var render func(w io.Writer, a ...interface{}) error
+	render = func(w io.Writer, a ...any) error {
+		_, err := w.Write([]byte(spew.Sdump(a...)))
+		return err
+	}
+
+	if color {
+		render = func(w io.Writer, a ...any) error {
+			return quick.Highlight(
+				w,
+				spew.Sdump(a...),
+				"go",
+				"terminal16",
+				*styleFlag,
+			)
+		}
+	}
+
+	//
+	// Run test mode
+	//
+	if *testModeFlag {
+		err := render(log.Writer(), map[string]any{
+			"str":   "foo",
+			"num":   100,
+			"bool":  false,
+			"null":  nil,
+			"array": []string{"foo", "bar", "baz"},
+			"obj":   map[string]any{"a": 1, "b": 2},
+		})
+		if err != nil {
+			log.Fatal(err)
+		}
+		os.Exit(0)
+	}
+
+	//
+	// Run regular mode
+	//
 	topicName := flag.Arg(0)
 	profilePath := flag.Arg(1)
 
@@ -58,21 +122,12 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Configure colorless prettyprinter
-	spew.Config.Indent = "  "
-
 	// Loop endlessly (or until a network error) reading nested dictionaries and dumping them to stdout. In a real consumer,
 	// this is where you'd place your custom handling code. Replace `map[string]any` with a type that has `json` struct tags
 	// and you'll get automatical deserialization of event payloads into an instance of that type. When your handler returns
 	// an error, consumer.Consume() will cleanly shut down and then return that error.
 	err = consumer.Consume(context.Background(), func(ctx context.Context, event *client.Webhook[map[string]any]) error {
-		if color {
-			log.Println(colorout.SdumpColorSimple(event))
-		} else {
-			log.Println(spew.Config.Sdump(event))
-		}
-
-		return nil
+		return render(log.Writer(), event)
 	})
 
 	if err != nil {
