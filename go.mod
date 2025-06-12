@@ -6,7 +6,7 @@ toolchain go1.24.1
 
 require (
 	github.com/davecgh/go-spew v1.1.1
-	github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250609213342-98e55134b7a7
+	github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250610213307-28972e0fd160
 )
 
 require (
