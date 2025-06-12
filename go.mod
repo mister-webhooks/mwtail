@@ -1,4 +1,4 @@
-module github.com/mister-webhooks/mwcat
+module github.com/mister-webhooks/mwtail
 
 go 1.23.0
 

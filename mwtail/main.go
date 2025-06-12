@@ -31,7 +31,7 @@ func main() {
 
 	if topicName == "" || profilePath == "" {
 		flag.Usage()
-		fmt.Fprintln(os.Stderr, "mwcat: [options] <topic> <filename>")
+		fmt.Fprintln(os.Stderr, "mwtail: [options] <topic> <filename>")
 		fmt.Fprintln(os.Stderr, "\truns a console consumer on the given topic using the provided connection profile")
 
 		if *helpFlag {
