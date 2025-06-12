@@ -7,17 +7,11 @@ toolchain go1.24.1
 require (
 	github.com/davecgh/go-spew v1.1.1
 	github.com/mister-webhooks/mister-webhooks-client/golang v0.0.0-20250611173003-cc0038a1d3a8
-	github.com/paudley/colorout v1.0.4
 )
 
 require (
-	github.com/fatih/color v1.18.0 // indirect
-	github.com/mattn/go-isatty v0.0.20 // indirect
-)
-
-require (
-	github.com/alecthomas/chroma v0.10.0 // indirect
-	github.com/dlclark/regexp2 v1.11.0 // indirect
+	github.com/alecthomas/chroma/v2 v2.18.0
+	github.com/dlclark/regexp2 v1.11.5 // indirect
 	github.com/fxamacker/cbor/v2 v2.8.0 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.8 // indirect
 	github.com/go-playground/locales v0.14.1 // indirect
@@ -29,7 +23,6 @@ require (
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/klauspost/compress v1.17.11 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
-	github.com/mattn/go-colorable v0.1.14 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
