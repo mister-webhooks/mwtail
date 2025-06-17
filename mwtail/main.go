@@ -8,6 +8,8 @@ import (
 	"io"
 	"log"
 	"os"
+	"slices"
+	"time"
 
 	"github.com/alecthomas/chroma/v2/quick"
 	"github.com/alecthomas/chroma/v2/styles"
@@ -122,15 +124,69 @@ func main() {
 		log.Fatal(err)
 	}
 
+	renderers := []Renderer{
+		{
+			taste: func(w *client.Webhook[map[string]any]) bool {
+				return slices.Contains(w.Headers["X-Github-Event"], "push")
+			},
+			render: func(w io.Writer, e *client.Webhook[map[string]any]) error {
+				name := "name"
+				commits := 0
+				ref := (*e.Payload)["ref"]
+				org := "foo"
+				repo := "bar"
+
+				switch v := (*e.Payload)["pusher"].(type) {
+				case map[any]any:
+					name = v["name"].(string)
+				}
+
+				switch v := (*e.Payload)["commits"].(type) {
+				case []any:
+					commits = len(v)
+				}
+
+				switch v := (*e.Payload)["organization"].(type) {
+				case map[any]any:
+					org = v["login"].(string)
+				}
+
+				switch v := (*e.Payload)["repository"].(type) {
+				case map[any]any:
+					repo = v["name"].(string)
+				}
+
+				_, err := fmt.Fprintf(w, "%s > %s pushed %d commits to %s on %s/%s\n", e.Timestamp.Format(time.RFC3339), name, commits, ref, org, repo)
+				return err
+			},
+		},
+		{
+			taste: func(w *client.Webhook[map[string]any]) bool { return true },
+			render: func(w io.Writer, e *client.Webhook[map[string]any]) error {
+				return render(w, e)
+			},
+		},
+	}
+
 	// Loop endlessly (or until a network error) reading nested dictionaries and dumping them to stdout. In a real consumer,
 	// this is where you'd place your custom handling code. Replace `map[string]any` with a type that has `json` struct tags
 	// and you'll get automatical deserialization of event payloads into an instance of that type. When your handler returns
 	// an error, consumer.Consume() will cleanly shut down and then return that error.
 	err = consumer.Consume(context.Background(), func(ctx context.Context, event *client.Webhook[map[string]any]) error {
-		return render(log.Writer(), event)
+		for _, renderer := range renderers {
+			if renderer.taste(event) {
+				return renderer.render(log.Writer(), event)
+			}
+		}
+		return fmt.Errorf("could not choose renderer for event")
 	})
 
 	if err != nil {
 		log.Fatalf("error: %s", err)
 	}
+}
+
+type Renderer struct {
+	taste  func(*client.Webhook[map[string]any]) bool
+	render func(w io.Writer, e *client.Webhook[map[string]any]) error
 }
