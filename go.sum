@@ -45,6 +45,17 @@ github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/reflect2 v1.0.2 h1:xBagoLtFs94CBntxluKeaWgTMpvLxC4ur3nMaC9Gz0M=
 github.com/modern-go/reflect2 v1.0.2/go.mod h1:yWuevngMOJpCy52FWWMvUC8ws7m/LJsjYzDa0/r8luk=
+github.com/nickwells/col.mod v1.1.0 h1:Z65DTRnffT+GahDfDoneQTmifYm8NMHBmZyxJUL9IUc=
+github.com/nickwells/col.mod v1.1.0/go.mod h1:4THC2fFReTDIjokgHadWVHYCOK06YQGhLTQw68U+h64=
+github.com/nickwells/col.mod/v3 v3.1.0 h1:n5jAt6O2eJN4ssI9a/nNAzOstAPNkUvpBkcJAuoFBTw=
+github.com/nickwells/col.mod/v3 v3.1.0/go.mod h1:AJ2Ss/nXMiKYAqvZSAGRHSoBuVH9UV6r0udiflMJxLo=
+github.com/nickwells/col.mod/v5 v5.0.1 h1:w7hsI666Kp+DVVYoF523S0RHdidBRDzoHe51LPZbQQM=
+github.com/nickwells/col.mod/v5 v5.0.1/go.mod h1:8LPRq1olcwqAv4Pal4bW2fs7O3FojKodbg6RGU0WUb8=
+github.com/nickwells/mathutil.mod/v2 v2.5.4 h1:jp6n0aA/FF6SfBPQeSA5xSy6WhL6aa4IgNM+2aNxTjM=
+github.com/nickwells/mathutil.mod/v2 v2.5.4/go.mod h1:eWRHgjWuXK1Yr4qwLGspvpIbOA3GZBo3OmjgOYG0Yz0=
+github.com/nickwells/testhelper.mod v1.3.0/go.mod h1:Ct/U2PjL0n9hGc+US6uR/s4NxSRI33NM+0ZkrDkG0XI=
+github.com/nickwells/twrap.mod v1.5.9 h1:GM2F9t3yKvhMxVYqJ5bszdGGzCIR2QlZXBAkbp9ACFs=
+github.com/nickwells/twrap.mod v1.5.9/go.mod h1:zY4WoCLRp1xOHoEbJgcZ90AfwbpijRiQ2NfU+/9ztTI=
 github.com/pierrec/lz4/v4 v4.1.15 h1:MO0/ucJhngq7299dKLwIMtgTfbkoSPF6AoMYDd8Q4q0=
 github.com/pierrec/lz4/v4 v4.1.15/go.mod h1:gZWDp/Ze/IJXGXf23ltt2EXimqmTUXEy0GFuRQyBid4=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
@@ -63,6 +74,8 @@ github.com/xdg-go/stringprep v1.0.4 h1:XLI/Ng3O1Atzq0oBs3TWm+5ZVgkq2aqdlvP9JtoZ6
 github.com/xdg-go/stringprep v1.0.4/go.mod h1:mPGuuIYwz7CmR2bT9j4GbQqutWS1zV24gijq1dTyGkM=
 golang.org/x/crypto v0.36.0 h1:AnAEvhDddvBdpY+uR+MyHmuZzzNqXSe/GvuDeob5L34=
 golang.org/x/crypto v0.36.0/go.mod h1:Y4J0ReaxCR1IMaabaSMugxJES1EpwhBHhv2bDHklZvc=
+golang.org/x/exp v0.0.0-20250606033433-dcc06ee1d476 h1:bsqhLWFR6G6xiQcb+JoGqdKdRU6WzPWmK8E0jxTjzo4=
+golang.org/x/exp v0.0.0-20250606033433-dcc06ee1d476/go.mod h1:3//PLf8L/X+8b4vuAfHzxeRUl04Adcb341+IGKfnqS8=
 golang.org/x/net v0.38.0 h1:vRMAPTMaeGqVhG5QyLJHqNDwecKTomGeqbnfZyKlBI8=
 golang.org/x/net v0.38.0/go.mod h1:ivrbrMbzFq5J41QOQh0siUuly180yBYtLp+CKbEaFx8=
 golang.org/x/sys v0.33.0 h1:q3i8TbbEz+JRD9ywIRlyRAQbM0qF7hu24q3teo2hbuw=
