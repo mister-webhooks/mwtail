@@ -112,7 +112,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Create a consumer that reads generic nested dictionaries from `topicName`.
+	// Create a consumer that reads generic events from `topicName`.
 	consumer, err := client.NewConsumer(
 		profile,
 		client.DeclareWebhookTopic[any](topicName),
