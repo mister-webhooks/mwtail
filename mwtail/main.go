@@ -115,18 +115,15 @@ func main() {
 	// Create a consumer that reads generic nested dictionaries from `topicName`.
 	consumer, err := client.NewConsumer(
 		profile,
-		client.DeclareWebhookTopic[map[string]any](topicName),
+		client.DeclareWebhookTopic[any](topicName),
 	)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	// Loop endlessly (or until a network error) reading nested dictionaries and dumping them to stdout. In a real consumer,
-	// this is where you'd place your custom handling code. Replace `map[string]any` with a type that has `json` struct tags
-	// and you'll get automatical deserialization of event payloads into an instance of that type. When your handler returns
-	// an error, consumer.Consume() will cleanly shut down and then return that error.
-	err = consumer.Consume(context.Background(), func(ctx context.Context, event *client.Webhook[map[string]any]) error {
+	// Loop endlessly (or until a network error) reading input events and dumping them to stdout.
+	err = consumer.Consume(context.Background(), func(ctx context.Context, event *client.Webhook[any]) error {
 		return render(log.Writer(), event)
 	})
 
